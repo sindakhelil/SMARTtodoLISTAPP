@@ -3,18 +3,47 @@ package com.example.smarttodolistapp;
 import androidx.room.Entity;
 import androidx.room.PrimaryKey;
 
-@Entity(tableName = "tasks") // Nom de la table dans la base de données
+/**
+ * Represents a Task entity for the Room database.
+ */
+@Entity(tableName = "tasks")
 public class Task {
 
-    @PrimaryKey(autoGenerate = true) // ID unique qui s'incrémente automatiquement
-    public int id;
+    @PrimaryKey(autoGenerate = true)
+    private int id;
 
-    public String title;  // Le titre de la tâche
-    public boolean completed; // Si la tâche est terminée ou non
+    private String title;
+    private boolean completed;
 
-    // Constructeur pour créer une nouvelle tâche
+    // ---- Constructeur ----
     public Task(String title, boolean completed) {
         this.title = title;
+        this.completed = completed;
+    }
+
+    // ---- Getters & Setters ----
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public String getTitle() {
+        return title;   // <--- هذي اللي كان يطلبها Android Studio
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public boolean isCompleted() {
+        return completed;
+    }
+
+    public void setCompleted(boolean completed) {
         this.completed = completed;
     }
 }
