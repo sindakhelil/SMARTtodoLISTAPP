@@ -62,4 +62,5 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             taskText = itemView.findViewById(R.id.editTextTask);
         }
     }
+
 }
