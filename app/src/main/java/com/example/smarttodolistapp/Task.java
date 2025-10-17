@@ -48,4 +48,16 @@ public class Task {
     public void setCompleted(boolean completed) {
         this.completed = completed;
     }
+    private String date; // format: "dd/MM/yyyy"
+
+    public Task(String title, boolean completed, String date) {
+        this.title = title;
+        this.completed = completed;
+        this.date = date;
+    }
+
+    // getter et setter
+    public String getDate() { return date; }
+    public void setDate(String date) { this.date = date; }
+
 }
