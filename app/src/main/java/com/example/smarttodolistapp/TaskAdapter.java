@@ -47,6 +47,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         return taskList.size();
     }
 
+
+
     static class TaskViewHolder extends RecyclerView.ViewHolder {
         TextView taskText;
 
@@ -54,6 +56,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
             super(itemView);
             // تصحيح id هنا
             taskText = itemView.findViewById(R.id.tvTask);
+
+
         }
     }
 }
