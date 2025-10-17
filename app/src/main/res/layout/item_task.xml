@@ -8,7 +8,8 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="horizontal"
+        android:gravity="center_vertical">
 
         <CheckBox
             android:id="@+id/checkBoxTask"
@@ -17,12 +18,21 @@
 
         <TextView
             android:id="@+id/tvTask"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="Exemple de tâche"
             android:textSize="18sp"
+            android:layout_weight="1"
             android:layout_marginStart="8dp"
             android:textColor="#333333" />
+
+        <Button
+            android:id="@+id/buttonDelete"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Supprimer"
+            android:textColor="#FFFFFF"
+            android:backgroundTint="#F44336" />
 
     </LinearLayout>
 </androidx.cardview.widget.CardView>
