@@ -5,10 +5,6 @@ import androidx.room.Room;
 import androidx.room.RoomDatabase;
 import android.content.Context;
 
-/**
- * Room database class.
- * Singleton pattern used to get a single instance.
- */
 @Database(entities = {Task.class}, version = 1)
 public abstract class AppDatabase extends RoomDatabase {
 
@@ -21,7 +17,6 @@ public abstract class AppDatabase extends RoomDatabase {
             instance = Room.databaseBuilder(context.getApplicationContext(),
                             AppDatabase.class, "task_database")
                     .fallbackToDestructiveMigration()
-                    .allowMainThreadQueries() // simple approach, can use Async later
                     .build();
         }
         return instance;

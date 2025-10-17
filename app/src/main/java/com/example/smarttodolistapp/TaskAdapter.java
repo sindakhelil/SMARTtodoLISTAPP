@@ -3,29 +3,33 @@ package com.example.smarttodolistapp;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Adapter pour gérer l'affichage et les actions sur les tâches.
+ */
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
-    private final List<Task> taskList;
+    private List<Task> tasks;
+    private AppDatabase db;
 
-    public TaskAdapter(List<Task> tasks) {
-        if (tasks != null) {
-            this.taskList = tasks;
-        } else {
-            this.taskList = new ArrayList<>();
-        }
+    // Constructeur
+    public TaskAdapter(List<Task> tasks, AppDatabase db) {
+        this.tasks = tasks;
+        this.db = db;
     }
 
-    public void addTask(Task task) {
-        taskList.add(task);
-        notifyItemInserted(taskList.size() - 1);
+    // Permet d’ajouter une nouvelle tâche à la liste
+    public void addTask(Task newTask) {
+        tasks.add(newTask);
+        notifyItemInserted(tasks.size() - 1);
     }
 
     @NonNull
@@ -38,26 +42,42 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull TaskViewHolder holder, int position) {
-        Task task = taskList.get(position);
-        holder.taskText.setText(task.getTitle());
+        Task task = tasks.get(position);
+        holder.checkBox.setText(task.getTitle());
+        holder.textDate.setText(task.getDate());
+        holder.checkBox.setChecked(task.isCompleted());
+
+        // Action supprimer
+        holder.buttonDelete.setOnClickListener(v -> {
+            db.taskDao().delete(task);
+            int pos = holder.getAdapterPosition();
+            tasks.remove(pos);
+            notifyItemRemoved(pos);
+        });
+
+        // Action cocher / décocher
+        holder.checkBox.setOnCheckedChangeListener((buttonView, isChecked) -> {
+            task.setCompleted(isChecked);
+            db.taskDao().update(task);
+        });
     }
 
     @Override
     public int getItemCount() {
-        return taskList.size();
+        return tasks.size();
     }
 
+    // ViewHolder
+    public static class TaskViewHolder extends RecyclerView.ViewHolder {
+        CheckBox checkBox;
+        TextView textDate;
+        Button buttonDelete;
 
-
-    static class TaskViewHolder extends RecyclerView.ViewHolder {
-        TextView taskText;
-
-        TaskViewHolder(View itemView) {
+        public TaskViewHolder(@NonNull View itemView) {
             super(itemView);
-            // تصحيح id هنا
-            taskText = itemView.findViewById(R.id.tvTask);
-
-
+            checkBox = itemView.findViewById(R.id.checkBoxTask);
+            textDate = itemView.findViewById(R.id.tvDate);
+            buttonDelete = itemView.findViewById(R.id.buttonDelete);
         }
     }
 }
