@@ -11,15 +11,11 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * Adapter class to display Task items in RecyclerView.
- */
 public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder> {
 
     private final List<Task> taskList;
 
     public TaskAdapter(List<Task> tasks) {
-        // Avoid null list crashes
         if (tasks != null) {
             this.taskList = tasks;
         } else {
@@ -27,9 +23,6 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
         }
     }
 
-    /**
-     * Add a new task to the RecyclerView list
-     */
     public void addTask(Task task) {
         taskList.add(task);
         notifyItemInserted(taskList.size() - 1);
@@ -59,8 +52,8 @@ public class TaskAdapter extends RecyclerView.Adapter<TaskAdapter.TaskViewHolder
 
         TaskViewHolder(View itemView) {
             super(itemView);
-            taskText = itemView.findViewById(R.id.editTextTask);
+            // تصحيح id هنا
+            taskText = itemView.findViewById(R.id.tvTask);
         }
     }
-
 }
