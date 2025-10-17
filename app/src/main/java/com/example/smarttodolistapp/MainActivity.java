@@ -36,7 +36,8 @@ public class MainActivity extends AppCompatActivity {
         List<Task> tasks = database.taskDao().getAllTasks();
 
         // 🔹 Initialize adapter with the task list
-        taskAdapter = new TaskAdapter(tasks);
+        taskAdapter = new TaskAdapter(tasks, database);
+
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(taskAdapter);
 
