@@ -9,9 +9,17 @@ Une application Android pour gérer vos tâches au quotidien.
 - Items foncés et bouton "Ajouter" large
 
 ## Capture d'écran
-![Screenshot](screenshot.png)  <!-- remplace par ton screenshot réel -->
+Écran principal :  
+SMARTtodoLISTAPP\écran principal.jpg
+l'ajout de la tâche :  
+SMARTtodoLISTAPP\l'ajout de la tâche.jpg
+Tâche marquée :  
+SMARTtodoLISTAPP\tâche marquée.jpg
+Supression de la tâche :
+SMARTtodoLISTAPP\supression de la tâche.jpg
 
 ## Installation
 1. Cloner le projet :  
 ```bash
 git clone https://github.com/sindakhelil/SMARTtodoLISTAPP/
+
